@@ -52,17 +52,17 @@ In this project I've tried [DQN](https://www.nature.com/articles/nature14236) an
 
 As expected, DDQN worked better because the dueling architecture learnt which states are (or are not) valuable, without having to learn the effect of each action for each state.
 
-DQN network has the following structure:
+**DQN** network has the following structure:
 
-Layer 1: (state_size, 128) -> relu activation
-Layer 2: (128, 64) -> relu activation
-Layer 3: (64, action_size)
+Layer 1: (state_size, 128) -> relu activation <br/>
+Layer 2: (128, 64) -> relu activation <br/>
+Layer 3: (64, action_size) <br/>
 
-DDQN network's structure:
+**DDQN** network's structure:
 
-Layer 1: (state_size, 128) -> relu activation
-Layer 2: (128, 64) -> relu activation
-Layer 3: value_function(64, 1), adv_function(64, action_size)
+Layer 1: (state_size, 128) -> relu activation <br/>
+Layer 2: (128, 64) -> relu activation <br/>
+Layer 3: value_function(64, 1), adv_function(64, action_size) <br/>
 
 output: value_function(x) + (adv_function(x) - adv_function(x).mean())
 
@@ -78,7 +78,7 @@ Figure below shows scores for number of episodes
 
 ![DDQN Scores](ddqn.png)
 
-**Future Improvements**
+**Future Improvements** <br/>
 To improve this solution, we could implement a few more things:
 1. Prioritized Experience Replay. This would allow for more intelligent sampling from the Memory Buffer. At the moment all experiences (represented as a tuple of state, next_state, reward, action and done) are sampled uniformly. Prioritized Experience would sample tuples that result in higher error (which means that we learn more from them) more often.
 2. Noisy Network instead of epsilon-greedy policy. This would require to implement custom Linear layer in PyTorch (which is not hard) and remove all the epsilon-greedy related code from the current implimentation. This could improve learning process of the agent as shown in this [paper](https://arxiv.org/abs/1706.10295).
